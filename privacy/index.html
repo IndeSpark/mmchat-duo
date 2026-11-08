@@ -52,7 +52,7 @@
 
       <section class="promise" aria-labelledby="collect">
         <h2 id="collect">We don’t collect your data</h2>
-        <p>MMChat Duo has no accounts of its own, no analytics, no advertising and no tracking. IndeSpark, LLC doesn’t keep your messages, contacts, account details or usage data. Notifications pass through our relay only on their way to Apple, as described below.</p>
+        <p>MMChat Duo has no accounts of its own, no analytics, no advertising and no tracking. IndeSpark, LLC doesn’t keep your messages, contacts, account details or usage data. Push notifications are described below.</p>
       </section>
 
       <section aria-labelledby="where">
@@ -63,8 +63,8 @@
 
       <section aria-labelledby="push">
         <h2 id="push">Push notifications</h2>
-        <p>If your server’s administrator turns on notifications for MMChat Duo, your server sends each notification to our relay at push.indespark.com, which passes it to Apple’s Push Notification service for delivery to your device. A notification holds what your server puts in it: who it’s from, the channel, and the message text if the administrator chose to include it.</p>
-        <p>The relay doesn’t store notifications or their contents. It keeps short operational logs of whether each delivery succeeded, without message text. Your device’s notification token is kept by your Mattermost server with your session and removed when you sign out. If notifications aren’t turned on for your server, nothing goes through the relay.</p>
+        <p>Push notifications work on Mattermost servers set up for MMChat Duo. On those, the server sends each notification through MMChat Duo’s push relay, which runs alongside it, to Apple’s Push Notification service for delivery to your device. A notification holds what your server puts in it: who it’s from, the channel, and the message text if the administrator chose to include it.</p>
+        <p>The relay doesn’t store notifications or their contents. It keeps short operational logs of whether each delivery succeeded, without message text. Your device’s notification token is kept by your Mattermost server with your session and removed when you sign out. On other servers, the app doesn’t receive push notifications.</p>
       </section>
 
       <section aria-labelledby="device">
