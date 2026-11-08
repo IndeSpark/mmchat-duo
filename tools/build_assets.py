@@ -6,8 +6,8 @@
   uv run tools/build_assets.py <mattermost-native checkout>
 
 Each capture is clipped to the bezel's own screen shape (the transparent region connected to the
-screen centre), so square screenshot corners never show past rounded screen corners. A capture
-named NAME-dark.png beside NAME.png is used for the dark variant when it exists.
+screen centre), so square screenshot corners never show past rounded screen corners. The dark
+variant uses the same screen from the sibling '<set>-dark' folder.
 """
 import sys, pathlib
 from PIL import Image, ImageDraw, ImageChops
@@ -55,9 +55,14 @@ def framed(bezel_file, shot_file, rect, width, mode="fill", crop_top=0):
     return out.resize((width, round(out.height * width / out.width)), Image.LANCZOS)
 
 def shot_path(rel, dark):
+    """The light capture, or its dark twin in the sibling '<set>-dark' folder (required: pairs must match)."""
     p = SH / rel
-    d = p.with_name(p.stem + "-dark.png")
-    return d if dark and d.exists() else p
+    if not dark:
+        return p
+    d = SH / f"{p.parent.name}-dark" / p.name
+    if not d.exists():
+        sys.exit(f"no dark twin for {rel}")
+    return d
 
 ITEMS = [
     # name, bezel light, bezel dark, capture, screen rect, output width, mode
@@ -72,7 +77,7 @@ ITEMS = [
     ("iphone-info", "Bezel-iPhone-17/iPhone 17 Pro - Silver - Portrait.png",
      "Bezel-iPhone-17/iPhone 17 Pro - Deep Blue - Portrait.png", "iphone-6.3/04-channel-info.png", (72, 69, 1206, 2622), 600, "fill"),
     ("ipad", "Bezel-iPad-Pro-(M5)/iPad Pro (M5) 13\" - Silver - Landscape.png",
-     "Bezel-iPad-Pro-(M5)/iPad Pro (M5) 13\" - Space Black - Landscape.png", "ipad-13/04-channel-info.png", (124, 118, 2752, 2064), 1400, "fill"),
+     "Bezel-iPad-Pro-(M5)/iPad Pro (M5) 13\" - Space Black - Landscape.png", "ipad-13/06-first-unread.png", (124, 118, 2752, 2064), 1400, "fill"),
     ("mac", "Bezel-MacBook-Pro-M5/MacBook Pro M5 14-inch Silver.png",
      "Bezel-MacBook-Pro-M5/MacBook Pro M5 14-inch Space Black.png", "mac/01-conversation.png", (418, 288, 3024, 1964), 1600, "letterbox"),
 ]
