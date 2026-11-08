@@ -45,14 +45,21 @@
     <div class="wrap hero-body">
       <div class="hero-copy">
         <h1>MMChat Duo</h1>
+        <p class="tagline">Mattermost, made for iPhone Duo</p>
         <p class="lede">A native client for Mattermost servers, made for iPhone, iPhone Duo, iPad and Mac.</p>
         <p class="soon">Coming soon to TestFlight and the App Store</p>
       </div>
       <div class="hero-art">
-        <img class="open" src="assets/duo-open.webp" width="1600" height="1162"
-             alt="MMChat Duo on an open iPhone Duo: the channel list beside a conversation.">
-        <img class="folded" src="assets/duo-folded.webp" width="640" height="892"
-             alt="MMChat Duo on a folded iPhone Duo, showing a conversation with an AI agent.">
+        <picture class="open">
+          <source srcset="assets/duo-open-dark.webp" media="(prefers-color-scheme: dark)">
+          <img class="shot" src="assets/duo-open.webp" width="1600" height="1162"
+               alt="MMChat Duo on an open iPhone Duo: the channel list beside a conversation.">
+        </picture>
+        <picture class="folded">
+          <source srcset="assets/duo-folded-dark.webp" media="(prefers-color-scheme: dark)">
+          <img class="shot" src="assets/duo-folded.webp" width="640" height="892"
+               alt="MMChat Duo on a folded iPhone Duo, showing a conversation with an AI agent.">
+        </picture>
       </div>
     </div>
   </div>
@@ -70,46 +77,72 @@
 
       <div class="gallery" role="list">
         <figure role="listitem">
-          <img src="assets/iphone-channels.webp" width="600" height="1227" loading="lazy"
+          <picture>
+          <source srcset="assets/iphone-channels-dark.webp" media="(prefers-color-scheme: dark)">
+          <img class="shot" src="assets/iphone-channels.webp" width="600" height="1227" loading="lazy"
                alt="iPhone showing the channel list with favorites, agents, channels and direct messages.">
+        </picture>
           <figcaption>Channels, direct messages and agents</figcaption>
         </figure>
         <figure role="listitem">
-          <img src="assets/iphone-agent.webp" width="600" height="1227" loading="lazy"
+          <picture>
+          <source srcset="assets/iphone-agent-dark.webp" media="(prefers-color-scheme: dark)">
+          <img class="shot" src="assets/iphone-agent.webp" width="600" height="1227" loading="lazy"
                alt="iPhone showing a conversation with an AI agent, including a code block.">
+        </picture>
           <figcaption>Bots and agents, clearly marked</figcaption>
         </figure>
         <figure role="listitem">
-          <img src="assets/iphone-info.webp" width="600" height="1227" loading="lazy"
+          <picture>
+          <source srcset="assets/iphone-info-dark.webp" media="(prefers-color-scheme: dark)">
+          <img class="shot" src="assets/iphone-info.webp" width="600" height="1227" loading="lazy"
                alt="iPhone showing Channel Info with members, pinned messages and files.">
+        </picture>
           <figcaption>Channel Info: members, pins and files</figcaption>
         </figure>
       </div>
-      <img class="ipad" src="assets/ipad.webp" width="1400" height="1073" loading="lazy"
-           alt="iPad showing the sidebar beside a conversation with images, reactions and a link preview.">
+      <div class="wide-shots">
+        <figure>
+          <picture>
+          <source srcset="assets/ipad-dark.webp" media="(prefers-color-scheme: dark)">
+          <img class="shot" src="assets/ipad.webp" width="1400" height="1073" loading="lazy"
+               alt="iPad showing a conversation beside the sidebar and the Channel Info pane.">
+        </picture>
+          <figcaption>iPad: sidebar, conversation and Channel Info side by side</figcaption>
+        </figure>
+        <figure>
+          <picture>
+          <source srcset="assets/mac-dark.webp" media="(prefers-color-scheme: dark)">
+          <img class="shot" src="assets/mac.webp" width="1600" height="1053" loading="lazy"
+               alt="MacBook Pro showing MMChat Duo with the sidebar and a conversation.">
+        </picture>
+          <figcaption>Mac: a full window with menus and keyboard shortcuts</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section id="questions" class="wrap" aria-labelledby="questions-title">
       <p class="eyebrow">Questions</p>
       <h2 id="questions-title">Good to know</h2>
-      <div class="faq">
-        <div class="card">
-          <h3>Which servers work?</h3>
-          <p>Mattermost servers reachable over HTTPS. Sign-in with single sign-on (SAML, OpenID, GitLab and similar) isn’t supported yet.</p>
+      <dl class="faq">
+        <div>
+          <dt>Which servers work?</dt>
+          <dd>Mattermost servers reachable over HTTPS. Sign-in with single sign-on (SAML, OpenID, GitLab and similar) isn’t supported yet.</dd>
         </div>
-        <div class="card">
-          <h3>Why don’t I see Add Members or Make Channel Admin?</h3>
-          <p>They follow your server’s permissions. If your role can’t manage a channel’s members, the app doesn’t offer it.</p>
+        <div>
+          <dt>Why don’t I see Add Members or Make Channel Admin?</dt>
+          <dd>They follow your server’s permissions. If your role can’t manage a channel’s members, the app doesn’t offer it.</dd>
         </div>
-        <div class="card">
-          <h3>Where are my messages stored?</h3>
-          <p>On your Mattermost server. See the <a href="privacy/">privacy policy</a>.</p>
+        <div>
+          <dt>Where are my messages stored?</dt>
+          <dd>On your Mattermost server. See the <a href="privacy/">privacy policy</a>.</dd>
         </div>
-      </div>
+      </dl>
     </section>
 
     <section id="contact" class="wrap" aria-labelledby="contact-title">
       <div class="contact">
+        <div class="mark"><img src="assets/icon-192.png" alt="" width="56" height="56"></div>
         <div>
           <h2 id="contact-title">Contact</h2>
           <p>Email <a href="mailto:contact@indespark.com">contact@indespark.com</a> with a problem or question. TestFlight testers can also send feedback from the TestFlight app.</p>
