@@ -3,7 +3,9 @@
 # ///
 """Builds the site's framed product images from App Store captures and Apple product bezels.
 
-  uv run tools/build_assets.py <mattermost-native checkout>
+  uv run tools/build_assets.py <mattermost-native checkout> [captures folder under build/appstore]
+
+The captures folder defaults to the 1.1.1 cast's raw set (cast-1.1.1-b38/raw).
 
 Each capture is clipped to the bezel's own screen shape (the transparent region connected to the
 screen centre), so square screenshot corners never show past rounded screen corners. The dark
@@ -13,7 +15,7 @@ import sys, pathlib
 from PIL import Image, ImageDraw, ImageChops
 
 repo = pathlib.Path(sys.argv[1]).expanduser()
-BZ, SH, OUT = repo / "build/bezels", repo / "build/appstore", pathlib.Path(__file__).resolve().parent.parent / "assets"
+BZ, SH, OUT = repo / "build/bezels", repo / "build/appstore" / (sys.argv[2] if len(sys.argv) > 2 else "cast-1.1.1-b38/raw"), pathlib.Path(__file__).resolve().parent.parent / "assets"
 
 def screen_mask(bezel: Image.Image) -> Image.Image:
     """White where the bezel's screen opening is (transparent pixels connected to the centre)."""
@@ -67,15 +69,15 @@ def shot_path(rel, dark):
 ITEMS = [
     # name, bezel light, bezel dark, capture, screen rect, output width, mode
     ("duo-open", "Bezel-iPhone-Duo/iPhone Duo - Star White - Inner Open Landscape.png",
-     "Bezel-iPhone-Duo/iPhone Duo - Night Sky - Inner Open Landscape.png", "duo-unfolded/01-conversation.png", (120, 120, 2853, 2007), 1600, "fill"),
+     "Bezel-iPhone-Duo/iPhone Duo - Night Sky - Inner Open Landscape.png", "duo-unfolded/06-first-unread.png", (120, 120, 2853, 2007), 1600, "fill"),
     ("duo-folded", "Bezel-iPhone-Duo/iPhone Duo - Star White - Outer Closed Portrait.png",
      "Bezel-iPhone-Duo/iPhone Duo - Night Sky - Outer Closed Portrait.png", "duo-folded/03-agent.png", (88, 80, 1398, 2034), 640, "fill"),
     ("iphone-channels", "Bezel-iPhone-17/iPhone 17 Pro - Silver - Portrait.png",
-     "Bezel-iPhone-17/iPhone 17 Pro - Deep Blue - Portrait.png", "iphone-6.3/01-channels.png", (72, 69, 1206, 2622), 600, "fill"),
+     "Bezel-iPhone-17/iPhone 17 Pro - Deep Blue - Portrait.png", "iphone-6.9/01-channels.png", (72, 69, 1206, 2622), 600, "fill"),
     ("iphone-agent", "Bezel-iPhone-17/iPhone 17 Pro - Silver - Portrait.png",
-     "Bezel-iPhone-17/iPhone 17 Pro - Deep Blue - Portrait.png", "iphone-6.3/03-agent.png", (72, 69, 1206, 2622), 600, "fill"),
+     "Bezel-iPhone-17/iPhone 17 Pro - Deep Blue - Portrait.png", "iphone-6.9/03-agent.png", (72, 69, 1206, 2622), 600, "fill"),
     ("iphone-info", "Bezel-iPhone-17/iPhone 17 Pro - Silver - Portrait.png",
-     "Bezel-iPhone-17/iPhone 17 Pro - Deep Blue - Portrait.png", "iphone-6.3/04-channel-info.png", (72, 69, 1206, 2622), 600, "fill"),
+     "Bezel-iPhone-17/iPhone 17 Pro - Deep Blue - Portrait.png", "iphone-6.9/04-channel-info.png", (72, 69, 1206, 2622), 600, "fill"),
     ("ipad", "Bezel-iPad-Pro-(M5)/iPad Pro (M5) 13\" - Silver - Landscape.png",
      "Bezel-iPad-Pro-(M5)/iPad Pro (M5) 13\" - Space Black - Landscape.png", "ipad-13/06-first-unread.png", (124, 118, 2752, 2064), 1400, "fill"),
     ("mac", "Bezel-MacBook-Pro-M5/MacBook Pro M5 14-inch Silver.png",
