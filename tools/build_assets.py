@@ -5,7 +5,7 @@
 
   uv run tools/build_assets.py <mattermost-native checkout> [captures folder under build/appstore]
 
-The captures folder defaults to the 1.1.1 cast's raw set (cast-1.1.1-b38/raw).
+The captures folder defaults to the 1.1.2 cast's raw set (cast-1.1.2-b41/raw).
 
 Each capture is clipped to the bezel's own screen shape (the transparent region connected to the
 screen centre), so square screenshot corners never show past rounded screen corners. The dark
@@ -15,7 +15,7 @@ import sys, pathlib
 from PIL import Image, ImageDraw, ImageChops
 
 repo = pathlib.Path(sys.argv[1]).expanduser()
-BZ, SH, OUT = repo / "build/bezels", repo / "build/appstore" / (sys.argv[2] if len(sys.argv) > 2 else "cast-1.1.1-b38/raw"), pathlib.Path(__file__).resolve().parent.parent / "assets"
+BZ, SH, OUT = repo / "build/bezels", repo / "build/appstore" / (sys.argv[2] if len(sys.argv) > 2 else "cast-1.1.2-b41/raw"), pathlib.Path(__file__).resolve().parent.parent / "assets"
 
 def screen_mask(bezel: Image.Image) -> Image.Image:
     """White where the bezel's screen opening is (transparent pixels connected to the centre)."""
